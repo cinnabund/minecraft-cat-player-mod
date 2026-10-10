@@ -3,15 +3,19 @@ plugins {
     id 'maven-publish'
 }
 
-version = '0.2.0'
-group = 'com.example'
+version = '0.3.0'
+group = 'com.example.catcompanion'
 
 base {
-    archivesName = 'catplayer'
+    archivesName = 'catcompanion'
 }
 
 repositories {
     mavenCentral()
+    maven {
+        name = 'Fabric'
+        url = 'https://maven.fabricmc.net/'
+    }
 }
 
 dependencies {
@@ -25,6 +29,8 @@ java {
     toolchain {
         languageVersion = JavaLanguageVersion.of(17)
     }
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
 }
 
 tasks.withType(JavaCompile).configureEach {
@@ -32,8 +38,25 @@ tasks.withType(JavaCompile).configureEach {
 }
 
 processResources {
-    inputs.property "version", project.version
-    filesMatching("fabric.mod.json") {
-        expand "version": project.version
+    inputs.property 'version', project.version
+    inputs.property 'minecraft_version', project.minecraft_version
+
+    filesMatching('fabric.mod.json') {
+        expand 'version': project.version,
+               'minecraft_version': project.minecraft_version
+    }
+}
+
+jar {
+    from('LICENSE') {
+        into ''
+    }
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java
+        }
     }
 }

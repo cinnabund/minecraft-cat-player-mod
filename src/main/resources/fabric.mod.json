@@ -1,15 +1,17 @@
 {
   "schemaVersion": 1,
-  "id": "catplayer",
+  "id": "catcompanion",
   "version": "${version}",
-  "name": "Cat Player",
-  "description": "Server-side proof-of-concept that spawns cat entities alongside players. Vanilla clients will NOT see players as cats; this demonstrates the limitations of server-only entity replacement. See README for full details.",
-  "authors": ["YourName"],
+  "name": "Cat Companion",
+  "description": "Server-side proof-of-concept cat companion for each player using vanilla cat entities.",
+  "authors": [
+    "Copilot"
+  ],
   "license": "MIT",
   "environment": "server",
   "entrypoints": {
     "main": [
-      "com.example.catplayer.CatPlayerMod"
+      "com.example.catcompanion.CatCompanionMod"
     ]
   },
   "depends": {

@@ -9,4 +9,4 @@ pluginManagement {
     }
 }
 
-rootProject.name = 'catplayer'
+rootProject.name = 'catcompanion'
